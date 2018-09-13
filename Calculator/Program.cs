@@ -61,6 +61,7 @@ namespace Calculator
             int[] argumentsArray = new int[2];
             ref int firstArgument = ref argumentsArray[0];
             ref int secondArgument = ref argumentsArray[1];
+            successfulInput = true;
 
             // Interactive mode (read from keyboard input)
             if (args[0] == "interactive")
@@ -85,7 +86,6 @@ namespace Calculator
             {
                 try
                 {
-                    successfulInput = true;
                     var lines = File.ReadLines(@args[0]).Take(2).ToArray();
                     
                     // Try to read integers, and update the status of "inputIsValid" based on the result
