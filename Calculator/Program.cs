@@ -80,20 +80,18 @@ namespace Calculator
                         Console.WriteLine("Error: invalid integer.\nEnter <second number>: ");
                 }
             }
-            // Static mode (read from file)
+            // Fixed mode (read from file)
             else
             {
                 try
                 {
                     successfulInput = true;
-                    string readAllText = File.ReadAllText(@args[0]);
-                    var strings = readAllText.Split("\r\n".ToCharArray());
-                    /// Possible improvement: remove spaces
-
+                    var lines = File.ReadLines(@args[0]).Take(2).ToArray();
+                    
                     // Try to read integers, and update the status of "inputIsValid" based on the result
-                    successfulInput &= (int.TryParse(strings[0], out firstArgument));
-                    successfulInput &= (int.TryParse(strings[1], out secondArgument));
-                    Console.WriteLine("Error. number(s) read from file are not correct.");
+                    successfulInput &= (int.TryParse(lines[0], out firstArgument));
+                    successfulInput &= (int.TryParse(lines[1], out secondArgument));
+                    if(!successfulInput) Console.WriteLine("Error. number(s) read from file are not correct.");
                 }
                 catch (Exception ex)
                 {
